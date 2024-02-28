@@ -66,7 +66,7 @@ nav li {
   display: none;
 }
 
-@media (max-width: 768px) {
+@media(max-width: 768px) {
   nav ul {
     display: none;
   }
