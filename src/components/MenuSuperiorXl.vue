@@ -26,7 +26,7 @@
     <div class="header--icons">
       <Account />
       <CartPlus />
-      <menu class="menu-hamburger" @click="menuAberto = !menuAberto" />
+      <Menu class="menu-hamburger" @click="menuAberto = !menuAberto" />
     </div>
   </header>
 </template>
