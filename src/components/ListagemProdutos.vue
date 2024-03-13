@@ -15,23 +15,21 @@ const { browserWidth, deviceWidth, isMobile } = useScreen();
 
 </script>
 
-
 <template>
   <div>
-  <div>
     <h1>
-       Produtos - {{ browserWidth }} - {{ deviceWidth }} - {{
-      isMobile}} 
-      <span v-if="isMobile">É móvel</span>
+      Produtos - {{ browserWidth }} - {{ deviceWidth }} - {{ isMobile }}
     </h1>
-    ...
-  </div>
     <div class="container">
       <div class="card" v-for="produto in produtos" :key="produto.id">
-        <h1 class="card--title">{{ produto.title }}</h1>
-        <p>{{ produto.description }}</p>
-        <p>{{ formatPrice(produto.price) }}</p>
-        <img class="card--avatar" :src="produto.image" :alt="produto.title" />
+        <h1 class="card--title" :class="isMobile ? 'card-mobile' : ''">{{ produto.title }}</h1>
+        <div class="card-content">
+          <img class="card--avatar" :src="produto.image" :alt="produto.title" width="100" />
+          <div class="container-button">
+            <p>{{ formatPrice(produto.price) }}</p>
+            <button class="btn">Adicionar ao Carrinho</button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -41,51 +39,53 @@ const { browserWidth, deviceWidth, isMobile } = useScreen();
 .container {
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem;
   justify-content: center;
-  align-items: center;
-  margin: auto;
-  padding: 1rem 0;
 }
+
 .card {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-direction: column;
-  width: 15rem;
-  height: 25rem;
-  background: #fff;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  width: 300px;
+  margin: 10px;
+  padding: 20px;
   border-radius: 10px;
-  margin: auto;
-  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
 }
+
+.card--title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.card-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+}
+
 .card--avatar {
   width: 100%;
-  height: 17rem;
-  object-fit: cover;
-  margin-bottom: 0.5rem;
-}
-.card--title {
-  color: #222;
-  font-weight: 700;
-  text-transform: capitalize;
-  font-size: 1.1rem;
-  margin-top: 0.5rem;
-}
- @media(max-width: 768px) {
-  .container {
-    gap: 0.5rem;
-  }
-  .card {
-    width: 92%;
-  }
+  border-radius: 8px;
+  margin-bottom: 10px;
 }
 
-@media(min-width: 768px) and (max-width: 1024px) {
-  .card {
-    width: 22rem;
-  }
+.container-button {
+  width: 100%;
+  text-align: center;
 }
 
+.btn {
+  width: 100%;
+  padding: 8px;
+  border: none;
+  border-radius: 8px;
+  margin-top: 15px;
+  outline: none;
+  text-transform: uppercase;
+  font-weight: 800;
+  letter-spacing: 3px;
+  color: #fdfdfd;
+  background: #0d740d;
+  box-shadow: 0px 10px 40px -12px #16b123;
+}
 </style>

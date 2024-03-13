@@ -6,7 +6,6 @@ export function useScreen() {
   const isMobile = ref(false);
 
   const onBrowserResize = () => {
-    alert('i')
     browserWidth.value = window.innerWidth;
     deviceWidth.value = screen.width;
     isMobile.value = window.innerWidth < 768;
